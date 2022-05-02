@@ -1,0 +1,26 @@
+package ex061;
+//파일 입출력 관련 수업
+import java.io.*;
+import java.util.*;
+
+public class ex061 {
+
+	public static void main(String[] args) throws FileNotFoundException {
+		int count=0;
+		{
+			File file = new File("data/suwon.txt");
+			FileInputStream infile = new FileInputStream(file);
+			Scanner sc = new Scanner(infile);
+			
+			while(sc.hasNextLine()) {//읽어올 데이터 있는지 확인
+				sc.nextLine();
+				count++;
+				
+			}
+			
+		}
+		System.out.println(count);
+
+	}
+
+}

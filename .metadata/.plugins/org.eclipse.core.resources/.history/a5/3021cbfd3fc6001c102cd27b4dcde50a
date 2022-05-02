@@ -1,0 +1,34 @@
+package test;
+
+public class test {
+
+	public static void main(String[] args) {
+		abc a=new abc();
+		a.setAbc(10,20);
+	
+		System.out.println(a.sum());
+	}
+
+}
+class abc{
+	
+	private int a;
+	private int b;
+	
+	public void setAbc(int 이름,int b) {
+		this.a=a;
+		this.b=b;
+	}
+	
+	public int getAbc() {
+		return a;
+	}
+
+
+	public int sum() {
+		return a+b;
+	}
+	
+	
+
+}

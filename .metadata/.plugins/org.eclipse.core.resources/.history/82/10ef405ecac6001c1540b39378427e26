@@ -1,0 +1,48 @@
+package ex08;
+
+
+
+public class ex08 {
+
+/*	public void action(robot a){
+		if(a instanceof robot) {
+			robot action= (robot)a;
+		}
+		else if(a instanceof singrobot) {
+			singrobot action=(singrobot)a;
+		}
+		else if(a instanceof drawrobot) {
+			drawrobot action = (drawrobot)a;
+		}
+	}*/
+	
+	
+	public static void main(String[] args) {
+		robot[] arr = {new dancerobot(), new singrobot(),new drawrobot()};
+		
+		for(int i=0; i<arr.length;i++) {
+			action(arr[i]);
+		}
+		
+	}
+
+	
+	class robot{}
+	
+	class dancerobot extends robot{
+		void dance() {
+			System.out.println("춤을 춥니다");
+		}
+	}
+	class singrobot extends robot{
+		void sing() {
+			System.out.println("노래를 합니다.");
+		}
+	}
+	class drawrobot extends robot{
+		void draw() {
+			System.out.println("그림을 그립니다.");
+		}
+	}
+
+}

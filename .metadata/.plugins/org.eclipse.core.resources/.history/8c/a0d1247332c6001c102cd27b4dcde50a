@@ -1,0 +1,28 @@
+package test;
+
+public class test {
+
+	public static void main(String[] args) {
+		abc a=new abc();
+		a.setAbc(10);
+		
+		System.out.println();
+	}
+
+}
+class abc{
+	
+	private int c;
+	private int b;
+	
+	public void setAbc(int a) {
+		c=a;
+	}
+	
+	public int sum() {
+		return a+b;
+	}
+	
+	
+
+}

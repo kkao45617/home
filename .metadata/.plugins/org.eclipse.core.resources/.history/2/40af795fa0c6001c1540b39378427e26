@@ -1,0 +1,15 @@
+package ex03;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+public class ex03 {
+
+	public static void main(String[] args) {
+		 Date today = new Date();
+		 SimpleDateFormat date= new SimpleDateFormat("yyyy 년 MM월 dd일");
+		 SimpleDateFormat time= new SimpleDateFormat("hh:mm:ss a");
+		 System.out.println("날짜 : "+date.format(today));
+		 System.out.println("시간 : "+time.format(today));
+	}
+
+}

@@ -1,0 +1,37 @@
+package ex07;
+class tv{
+	private boolean power;
+	private int channel;
+	
+	public int getChannel() {
+		return channel;
+	}
+	public void setChannel(int channel) {
+		this.channel = channel;
+	}
+	void power() {power=!power;}
+	void channelup() {++channel;}
+	void channeldown() {--channel;}
+}
+class captiontv extends tv{
+	boolean caption;
+	void displaycaption(String text) {
+	if(caption) {
+		System.out.println(text);
+		}
+	}
+}
+
+public class ex07 {
+
+	public static void main(String[] args) {
+		captiontv ctv=new captiontv();
+		ctv.setChannel(10);
+		ctv.channelup();
+		System.out.println(ctv.getChannel());
+		ctv.displaycaption("hello,world");
+		ctv.caption=true;
+		ctv.displaycaption("un hello, world");
+	}
+
+}

@@ -1,0 +1,38 @@
+package ex08;
+
+public class ex08 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}
+class unit{
+	int x,y;
+	void move(int x, int y) {
+		
+	}
+	void stop() {
+		
+	}
+}
+
+class marine extends unit{
+	void stimpack() {
+		
+	}
+}
+class tank extends unit{
+	void changmode() {
+		
+	}
+}
+class dropship extends unit{
+	void load() {
+		
+	}
+	void unload() {
+		
+	}
+}
