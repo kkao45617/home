@@ -14,6 +14,7 @@ public class tvuser {
 		//args를 이용한 배열로 자료값을 넣어 출력하는 형태
 		/*
 		beanfactory factory = new beanfactory();
+		//tv tv = new tv();로 이해가능
 		tv tv =(tv)factory.getbean(args[0]);
 		tv.powerdown1();
 		tv.poweron1();

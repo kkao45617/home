@@ -12,11 +12,15 @@
     <fullyQualifiedTypeName name="ex07.captiontv"/>
     <fullyQualifiedTypeName name="java.util.Date"/>
     <fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
-    <fullyQualifiedTypeName name="java.lang.Override"/>
     <fullyQualifiedTypeName name="ex07.person"/>
     <fullyQualifiedTypeName name="java.lang.Object"/>
     <fullyQualifiedTypeName name="ex09.buyer"/>
     <fullyQualifiedTypeName name="ex09.audio"/>
     <fullyQualifiedTypeName name="ex09.computer"/>
     <fullyQualifiedTypeName name="ex09.product"/>
+    <fullyQualifiedTypeName name="java.lang.Override"/>
+    <fullyQualifiedTypeName name="samsunglg.samsunglg"/>
+    <fullyQualifiedTypeName name="samsunglg.lgtv"/>
+    <fullyQualifiedTypeName name="lgsamsung.samsungtv"/>
+    <fullyQualifiedTypeName name="lgsamsung.beanfactory"/>
 </qualifiedTypeNameHistroy>
