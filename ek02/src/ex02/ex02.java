@@ -38,7 +38,7 @@ public class ex02 {
 	public static void main(String[] args) {
 		Set<car> set = new HashSet<car>();
 		set.add(new car("robot","box",300));
-		set.add(new car("y202","y205",200));
+		set.add(new car("robot","y205",200));
 		set.add(new car("t323","h234",400));
 		set.add(new car("u213","n865",200));
 		set.add(new car("j234","k324",100));
