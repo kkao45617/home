@@ -16,9 +16,12 @@ public class jsoup{
 	   
 	   database data= new database();
 	   data.getconnection();
-	   ArrayList<String> text= new ArrayList<String>();
+	   data.newtable();
 	   
-      int pages=20;
+	   ArrayList<String> text= new ArrayList<String>();
+	   ArrayList<String> text2= new ArrayList<String>();
+	   
+      int pages=2;
       
       for(int i=1; i<pages; i++) {
       
@@ -58,13 +61,12 @@ public class jsoup{
             System.out.println(title);
             System.out.println(content);
             System.out.println();
-            text.add(title);
-            
+            data.mydbinsert(title, content);
          }
          
       }
       System.out.println("=====================================================");
-      System.out.println(text);
+      
    }
 
 }

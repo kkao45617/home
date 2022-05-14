@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class database {
 	private Connection con;
@@ -12,18 +13,18 @@ public class database {
 	public database() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			System.out.println("ì„±ê³µí–ˆìŠµë‹ˆë‹¤.");
+			System.out.println("¼º°øÇß½À´Ï´Ù.");
 			
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 		
 	}
-	//dbì—°ê²°ë‹¨
+	//db¿¬°á´Ü
 	public void getconnection() {
 		try {
 			con=DriverManager.getConnection(url,"root","1234");
-			System.out.println("ê³„ì •ì—°ê²°ì™„ë£Œ");
+			System.out.println("°èÁ¤¿¬°á¿Ï·á");
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -33,34 +34,32 @@ public class database {
 		try {
 			if(pstmt!=null) {
 				pstmt.close();
-				System.out.println("psmt ì—°ê²°í•´ì œ");
+				System.out.println("psmt ¿¬°áÇØÁ¦");
 			}
 			if(con!=null) {
 				con.close();
-				System.out.println("conì—°ê²°í•´ì œ");
+				System.out.println("con¿¬°áÇØÁ¦");
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
-	//ë¦¬ìŠ¤íŠ¸ ëª©ë¡
+	//¸®½ºÆ® ¸ñ·Ï
 		public void mydblistdata() {
 			try {
-				//dbì—°ê²°
+				//db¿¬°á
 				getconnection();
-				//sql ë¬¸ì¥ ì‘ì„±
-				String sql="select * from member";
-				//mysqlë¡œ sqlì¿¼ë¦¬ ì „ì†¡
+				//sql ¹®Àå ÀÛ¼º
+				String sql="select * from news";
+				//mysql·Î sqlÄõ¸® Àü¼Û
 				pstmt = con.prepareStatement(sql);
-				//ì‹¤í–‰ê²°ê³¼ë¥¼ ë°›ì•„ì˜¨ë‹¤.
+				//½ÇÇà°á°ú¸¦ ¹Ş¾Æ¿Â´Ù.
 				ResultSet rs = pstmt.executeQuery();
-				//ê²°ê³¼ë¥¼ ì¶œë ¥
+				//°á°ú¸¦ Ãâ·Â
 				while(rs.next()) {
 					System.out.println(rs.getInt(1)
-					+ ","+rs.getString(2)
-					+","+rs.getString(3)
-					+","+rs.getString(4));
+					+ ","+rs.getString(2));
 				}
 				
 			}catch(Exception e) {
@@ -70,41 +69,35 @@ public class database {
 			}
 		}
 		public void newtable() {
-			StringBuilder sb= new StringBuilder();
 			try {
 				getconnection();
-				String sql=sb.append("create table member(")
-						.append("no int,")
-						.append("name varchar(20),")
-						.append("sex varchar(20),")
-						.append("content text);")
-						.toString();
-						pstmt.execute(sql);
-			}catch(Exception e){
+				PreparedStatement  create = con.prepareStatement("create table news(\r\n"
+						+ "title text,content text\r\n"
+						+ ");");
+				create.executeUpdate();
+			}catch(SQLException e) {
 				e.printStackTrace();
 			}finally {
 				disconnection();
 			}
 		}
 		
-		public void mydbinsert(int no,String name, String sex,String content) {
+		public void mydbinsert( String title,String content) {
 			try {
-				//ë””ë¹„ì—°ê²°
+				//µğºñ¿¬°á
 				getconnection();
-				//sqlë¬¸ì¥ì‘ì„±
-				String sql="insert into member(no,name,sex,content) "
-						+"values(?,?,?,?)";
-				//sqlë¬¸ ì „ì†¡
+				//sql¹®ÀåÀÛ¼º
+				String sql="insert into news(title,content) "
+						+"values(?,?)";
+				//sql¹® Àü¼Û
 				pstmt=con.prepareStatement(sql);
 				
-				//? ê°’ì±„ìš°ê¸°
-				pstmt.setInt(1, no);
-				pstmt.setString(2, name);
-				pstmt.setString(3, sex);
-				pstmt.setString(4, content);
+				//? °ªÃ¤¿ì±â
+				pstmt.setString(1, title);
+				pstmt.setString(2, content);
 				
-				//dbê°’ ìˆ˜ì •
-				//dbì˜ ê°’ ì—…ë°ì´íŠ¸í• ë•Œ1
+				//db°ª ¼öÁ¤
+				//dbÀÇ °ª ¾÷µ¥ÀÌÆ®ÇÒ¶§1
 				pstmt.executeUpdate();
 				
 			}catch(Exception e) {
@@ -131,7 +124,7 @@ public class database {
 					disconnection();
 				}
 			}
-		//ì‚­ì œ
+		//»èÁ¦
 		public void mydbdelete(int no) {
 			try {
 				getconnection();
@@ -146,23 +139,21 @@ public class database {
 				disconnection();
 			}
 		}
-		//ê²€ìƒ‰ë¬¸
+		//°Ë»ö¹®
 		public void select(int no) {
 			try {
 				getconnection();
-				//sql ë¬¸ì¥ ì‘ì„±
-				String sql="select * from member where no=?";
-				//mysqlë¡œ sqlì¿¼ë¦¬ ì „ì†¡
+				//sql ¹®Àå ÀÛ¼º
+				String sql="select * from news where no=?";
+				//mysql·Î sqlÄõ¸® Àü¼Û
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, no);
-				//ì‹¤í–‰ê²°ê³¼ë¥¼ ë°›ì•„ì˜¨ë‹¤.
+				//½ÇÇà°á°ú¸¦ ¹Ş¾Æ¿Â´Ù.
 				ResultSet rs = pstmt.executeQuery();
-				//ê²°ê³¼ë¥¼ ì¶œë ¥
+				//°á°ú¸¦ Ãâ·Â
 				while(rs.next()) {
-					System.out.println(rs.getInt(1)
-					+ ","+rs.getString(2)
-					+","+rs.getString(3)
-					+","+rs.getString(4));
+					System.out.println(rs.getString(1)
+					+ ","+rs.getString(2));
 				}
 			}catch(Exception e) {
 				e.printStackTrace();
@@ -175,14 +166,13 @@ public class database {
 		//database abc= new database();
 		//abc.newtable();
 		//abc.getconnection();
-		//abc.mydbinsert(5, "ì´ì¬í˜„","ì´ì  í™”ê°€ë‚˜ë„¤" , "ì¢†ê¹Œ");
+		//abc.mydbinsert(5, "ÀÌÀçÇö","ÀÌÁ¨È­°¡³ª³×" , "Á¿±î");
 		
 		/*abc.mydblistdata();
 		System.out.println("-----------------------");
 		abc.mydbdelete(50);
 		System.out.println("------------------");
 		abc.mydblistdata();
-
 		System.out.println("==================================");
 		abc.select(3);*/
 	//}
