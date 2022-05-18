@@ -13,18 +13,18 @@ public class database {
 	public database() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			System.out.println("¼º°øÇß½À´Ï´Ù.");
+			System.out.println("ì„±ê³µí–ˆìŠµë‹ˆë‹¤.");
 			
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 		
 	}
-	//db¿¬°á´Ü
+	//dbì—°ê²°ë‹¨
 	public void getconnection() {
 		try {
 			con=DriverManager.getConnection(url,"root","1234");
-			System.out.println("°èÁ¤¿¬°á¿Ï·á");
+			System.out.println("ê³„ì •ì—°ê²°ì™„ë£Œ");
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -34,29 +34,29 @@ public class database {
 		try {
 			if(pstmt!=null) {
 				pstmt.close();
-				System.out.println("psmt ¿¬°áÇØÁ¦");
+				System.out.println("psmt ì—°ê²°í•´ì œ");
 			}
 			if(con!=null) {
 				con.close();
-				System.out.println("con¿¬°áÇØÁ¦");
+				System.out.println("conì—°ê²°í•´ì œ");
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
-	//¸®½ºÆ® ¸ñ·Ï
+	//ë¦¬ìŠ¤íŠ¸ ëª©ë¡
 		public void mydblistdata() {
 			try {
-				//db¿¬°á
+				//dbì—°ê²°
 				getconnection();
-				//sql ¹®Àå ÀÛ¼º
+				//sql ë¬¸ì¥ ì‘ì„±
 				String sql="select * from news";
-				//mysql·Î sqlÄõ¸® Àü¼Û
+				//mysqlë¡œ sqlì¿¼ë¦¬ ì „ì†¡
 				pstmt = con.prepareStatement(sql);
-				//½ÇÇà°á°ú¸¦ ¹Ş¾Æ¿Â´Ù.
+				//ì‹¤í–‰ê²°ê³¼ë¥¼ ë°›ì•„ì˜¨ë‹¤.
 				ResultSet rs = pstmt.executeQuery();
-				//°á°ú¸¦ Ãâ·Â
+				//ê²°ê³¼ë¥¼ ì¶œë ¥
 				while(rs.next()) {
 					System.out.println(rs.getInt(1)
 					+ ","+rs.getString(2));
@@ -84,20 +84,20 @@ public class database {
 		
 		public void mydbinsert( String title,String content) {
 			try {
-				//µğºñ¿¬°á
+				//ë””ë¹„ì—°ê²°
 				getconnection();
-				//sql¹®ÀåÀÛ¼º
+				//sqlë¬¸ì¥ì‘ì„±
 				String sql="insert into news(title,content) "
 						+"values(?,?)";
-				//sql¹® Àü¼Û
+				//sqlë¬¸ ì „ì†¡
 				pstmt=con.prepareStatement(sql);
 				
-				//? °ªÃ¤¿ì±â
+				//? ê°’ì±„ìš°ê¸°
 				pstmt.setString(1, title);
 				pstmt.setString(2, content);
 				
-				//db°ª ¼öÁ¤
-				//dbÀÇ °ª ¾÷µ¥ÀÌÆ®ÇÒ¶§1
+				//dbê°’ ìˆ˜ì •
+				//dbì˜ ê°’ ì—…ë°ì´íŠ¸í• ë•Œ1
 				pstmt.executeUpdate();
 				
 			}catch(Exception e) {
@@ -124,7 +124,7 @@ public class database {
 					disconnection();
 				}
 			}
-		//»èÁ¦
+		//ì‚­ì œ
 		public void mydbdelete(int no) {
 			try {
 				getconnection();
@@ -139,18 +139,18 @@ public class database {
 				disconnection();
 			}
 		}
-		//°Ë»ö¹®
+		//ê²€ìƒ‰ë¬¸
 		public void select(int no) {
 			try {
 				getconnection();
-				//sql ¹®Àå ÀÛ¼º
+				//sql ë¬¸ì¥ ì‘ì„±
 				String sql="select * from news where no=?";
-				//mysql·Î sqlÄõ¸® Àü¼Û
+				//mysqlë¡œ sqlì¿¼ë¦¬ ì „ì†¡
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, no);
-				//½ÇÇà°á°ú¸¦ ¹Ş¾Æ¿Â´Ù.
+				//ì‹¤í–‰ê²°ê³¼ë¥¼ ë°›ì•„ì˜¨ë‹¤.
 				ResultSet rs = pstmt.executeQuery();
-				//°á°ú¸¦ Ãâ·Â
+				//ê²°ê³¼ë¥¼ ì¶œë ¥
 				while(rs.next()) {
 					System.out.println(rs.getString(1)
 					+ ","+rs.getString(2));
@@ -166,7 +166,7 @@ public class database {
 		//database abc= new database();
 		//abc.newtable();
 		//abc.getconnection();
-		//abc.mydbinsert(5, "ÀÌÀçÇö","ÀÌÁ¨È­°¡³ª³×" , "Á¿±î");
+		//abc.mydbinsert(5, "ì´ì¬í˜„","ê±´ë¼¤ì´" , "ê°„ë°”ë ˆ");
 		
 		/*abc.mydblistdata();
 		System.out.println("-----------------------");
